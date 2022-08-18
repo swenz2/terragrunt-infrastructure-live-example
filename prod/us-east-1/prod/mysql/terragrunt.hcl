@@ -3,6 +3,9 @@
 # This is the configuration for Terragrunt, a thin wrapper for Terraform that helps keep your code DRY and
 # maintainable: https://github.com/gruntwork-io/terragrunt
 # ---------------------------------------------------------------------------------------------------------------------
+terraform {
+  source = "${include.envcommon.locals.base_source_url}?ref=v0.7.8"
+}
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Include configurations that are common used across multiple environments.
@@ -18,6 +21,7 @@ include "root" {
 # for the component across all environments.
 include "envcommon" {
   path = "${dirname(find_in_parent_folders())}/_envcommon/mysql.hcl"
+  expose = true
 }
 
 
